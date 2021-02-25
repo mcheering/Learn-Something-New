@@ -1,6 +1,4 @@
 module.exports = function(sequelize, DataTypes) {
-    // we pass two arguments into Sequelize.define, the name of our model as a string, and an object describing our model's schema. Each property will represent a column in the db. 
-    //Sequelize.define returns an object which we store inside the variable "User"
     let Cards = sequelize.define("Cards", {
         card_id: {
             type: DataTypes.INT,
