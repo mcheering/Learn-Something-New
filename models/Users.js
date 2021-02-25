@@ -1,7 +1,9 @@
+const bcrypt = require("bcryptjs")
+
 module.exports = (sequelize, DataTypes) => {
-      const Users = sequelize.define('users', {
+      const User = sequelize.define('User', {
             user_id: {
-                  type: DataTypes.INT,
+                  type: DataTypes.INTEGER,
                   allowNull: false,
                   autoIncrement: true,
                   primaryKey: true
@@ -23,13 +25,23 @@ module.exports = (sequelize, DataTypes) => {
 
       })
 
-      Users.associate = (models) => {
+      User.prototype.validPassword = function (password) {
+            return bcrypt.compareSync(password, this.password)
+      }
+
+      User.addHook('beforeCreate', function (user) {
+            user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null)
+      })
+
+
+
+      User.associate = (models) => {
             // Associating Author with Posts
             // When an Author is deleted, also delete any associated Posts
-            Users.hasMany(models.Cars, {
+            User.hasMany(models.Cars, {
                   onDelete: 'cascade',
             })
       }
 
-      return Users
+      return User
 }
