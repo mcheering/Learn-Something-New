@@ -1,6 +1,15 @@
 $(document).ready(function () {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
+
+  $('#logout').on("click", (event) => {
+    event.preventDefault()
+  })
+    $.get("/api/user_data").then(function (data) {
+      $(".member-name").text(data.email);
+    });
+
+
   $("#createCard").on("click", (event) => {
     event.preventDefault()
     let dataObj = {
@@ -41,10 +50,10 @@ $(document).ready(function () {
   }
   generateCard()
 
-  const studyTopic = $(".studyTopic").textContent
 
-  $(".studyTopic").on("click", (event) => {
+
+  $(".studyTopic").click(function (event) {
     event.preventDefault()
-    console.log("button works")
+    console.log("you clicked a study topic")
   })
 });
