@@ -15,7 +15,7 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
 
-  app.get("/study/:topic", (req, res) => {
+  app.get("/study/:topic", isAuthenticated, (req, res) => {
     db.Cards.findAll({
       where: {
         category: req.params.topic

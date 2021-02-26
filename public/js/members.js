@@ -28,7 +28,7 @@ $(document).ready(function () {
         console.log("you got some topics, bruh:", data)
         data.map(({ category }) => {
 
-          let newDiv = $("<div class='card'>")
+          let newDiv = $("<div class='card align-center col-10 studyTopic'>")
 
           const categoryCardText = document.createElement('h4')
           categoryCardText.textContent = `${category}`
@@ -40,4 +40,11 @@ $(document).ready(function () {
       }).catch((err) => console.error(err))
   }
   generateCard()
+
+  const studyTopic = $(".studyTopic").textContent
+
+  $(".studyTopic").on("click", (event) => {
+    event.preventDefault()
+    console.log("button works")
+  })
 });
