@@ -3,6 +3,7 @@ var path = require("path");
 
 // Requiring our custom middleware for checking if a user is logged in
 var isAuthenticated = require("../config/middleware/isAuthenticated");
+const db = require("../models");
 
 module.exports = function (app) {
 
@@ -13,6 +14,14 @@ module.exports = function (app) {
     }
     res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
+
+  app.get("/study/:topic", (req, res) => {
+    db.Cards.findAll({
+      where: {
+        category: req.params.topic
+      }
+    }).then((Cards) => res.json(Cards))
+  })
 
   app.get("/login", function (req, res) {
     // If the user already has an account send them to the members page

@@ -13,7 +13,9 @@ $(document).ready(function () {
       url: "api/createCard",
       data: dataObj
     })
+    location.reload();
     generateCard()
+
   })
 
   const generateCard = () => {

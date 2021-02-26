@@ -1,9 +1,9 @@
 // Requiring necessary npm packages
 var express = require("express");
 var session = require("express-session");
-var MemcachedStore = require('connect-memjs')(session)
+//var MemcachedStore = require('connect-memjs')(session)
 
-var store = new MemcachedStore({ servers: [process.env.MEMCACHEDCLOUD_SERVERS], username: process.env.MEMCACHEDCLOUD_USERNAME, password: process.env.MEMCACHEDCLOUD_PASSWORD })
+//var store = new MemcachedStore({ servers: [process.env.MEMCACHEDCLOUD_SERVERS], username: process.env.MEMCACHEDCLOUD_USERNAME, password: process.env.MEMCACHEDCLOUD_PASSWORD })
 
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 // We need to use sessions to keep track of our user's login status
-app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true, cookie: { secure: true }, store: store }));
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
