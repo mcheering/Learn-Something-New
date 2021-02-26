@@ -1,31 +1,34 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const methodOverride = require("method-override");
+// Requiring necessary npm packages
+var express = require("express");
+var session = require("express-session");
+var MemcachedStore = require('connect-memjs')(session)
 
-const port = process.env.PORT || 3000;
+var store = new MemcachedStore({ servers: [process.env.MEMCACHEDCLOUD_SERVERS], username: process.env.MEMCACHEDCLOUD_USERNAME, password: process.env.MEMCACHEDCLOUD_PASSWORD })
 
+// Requiring passport as we've configured it
+var passport = require("./config/passport");
 
+// Setting up port and requiring models for syncing
+var PORT = process.env.PORT || 8080;
+var db = require("./models");
 
-const app = express();
+// Creating express app and configuring middleware needed for authentication
+var app = express();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static("public"));
+// We need to use sessions to keep track of our user's login status
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true, cookie: { secure: true }, store: store }));
+app.use(passport.initialize());
+app.use(passport.session());
 
-// Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.urlencoded({ extended: false }));
+// Requiring our routes
+require("./routes/html-routes.js")(app);
+require("./routes/api-routes.js")(app);
 
-// Override with POST having ?_method=DELETE
-app.use(methodOverride("_method"));
-
-// Set Handlebars.
-const exphbs = require("express-handlebars");
-
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
-
-// Import routes and give the server access to them.
-const routes = require("./controllers/project2_controllers.js");
-
-app.use("/", routes);
-
-app.listen(port, function () {
-      console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+// Syncing our database and logging a message to the user upon success
+db.sequelize.sync().then(function () {
+  app.listen(PORT, function () {
+    console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
+  });
 });
