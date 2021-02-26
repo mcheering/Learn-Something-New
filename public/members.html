@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+      <meta name="description" content="Learn Something New App">
+      <meta name="author" content="Matthew Heering">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Open+Sans&display=swap" rel="stylesheet">
+
+      <title>Learn Something New</title>
+
+      <!-- Bootstrap core CSS -->
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+      <!-- Custom styles for this template -->
+      <link href="/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+      <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid position relative">
+                  <a class="navbar-brand text-center" href="#">Flash Card App</a>
+                  <button class="btn btn-danger float-right position-absolute" href="/logout">
+                        Logout
+                  </button>
+            </div>
+      </nav>
+      <div class="container">
+            <div class="row">
+                  <div class="col-md-6 col-md-offset-3">
+                        <h2>Welcome! Let's learn something new! <span class="member-name"></span></h2>
+                  </div>
+            </div>
+      </div>
+      <div class="container">
+            <form>
+                  <div class="mb-3">
+                        <label for="topic" class="form-label">Topic</label>
+                        <input type="topic" class="form-control" id="topic" aria-describedby="topic">
+                        <div id="topicDescription" class="form-text">Enter a topic this word is under. This should be
+                              reused for other words that are part of this topic. </div>
+                  </div>
+                  <div class="mb-3">
+                        <label for="term" class="form-label">Term</label>
+                        <input type="term" class="form-control" id="term" aria-describedby="topic">
+                        <div id="topicDescription" class="form-text">Enter a term you want to define.</div>
+                  </div>
+                  <div class="mb-3">
+                        <label for="term" class="form-label">Definition</label>
+                        <input type="text" class="form-control" id="definition" aria-describedby="topic">
+                        <div id="topicDescription" class="form-text">Enter the definition for the term. </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary" id="createCard">Submit</button>
+            </form>
+      </div>
+      <div class="container">
+            <h2>Study Topics</h2>
+            <p>Choose a topic to study</p>
+            <div id="studyTopics">
+                  <!--this needs to be populated by cards that have a category on them-->
+            </div>
+      </div>
+      <div class="container">
+            <h2>Quiz</h2>
+            <div class="flashCard">
+                  <!--this is where flashcards will go after they select a category, one wil be showed at a time, the card will flip on click, and then there will be three buttons, one to hear the word, so there will be an API call cor that, one button to say you got it right, it adds the word to a list on the right, and a button on the left for incorrect to add the word to a list on the left. -->
+                  <div class="container-fluid d-flex justify-content-evenly">
+                        <div>
+                              <h4>Incorrect</h4>
+                              <ul id="incorrectAnswers">
+
+                              </ul>
+                        </div>
+                        <div class="scene scene--card position-relative">
+                              <div class="card" style="width:100%; height:100%;">
+                                    <div class="card__face card__face--front">
+                                          front
+                                    </div>
+                                    <div class="card__face card__face--back">
+                                          back
+                                          <button
+                                                class="btn btn-primary position-absolute bottom-0 start-0">Correct</button>
+                                          <button
+                                                class="btn btn-danger position-absolute bottom-0 end-0">Incorrect</button>
+                                    </div>
+                              </div>
+                        </div>
+                        <div>
+                              <h4>Correct</h4>
+                              <ul id="correctAnswers">
+
+                              </ul>
+                        </div>
+                  </div>
+            </div>
+      </div>
+      <!-- /container -->
+      <footer class=" footer container-fluid mt-auto py-3 bg-dark position-absolute bottom-0">
+            <div class="container mp"></div>
+            <p class="text-center"> copyright © Learn Something New App 2021</p>
+            </div>
+      </footer>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+            crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+      <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+      <script type="text/javascript" src="js/members.js"></script>
+
+</body>
+
+</html>
