@@ -1,6 +1,17 @@
 $(document).ready(function () {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
+
+  let cardArr = []
+
+  $('#logout').on("click", (event) => {
+    event.preventDefault()
+  })
+  $.get("/api/user_data").then(function (data) {
+    $(".member-name").text(data.email);
+  });
+
+
   $("#createCard").on("click", (event) => {
     event.preventDefault()
     let dataObj = {
@@ -13,7 +24,9 @@ $(document).ready(function () {
       url: "api/createCard",
       data: dataObj
     })
+    location.reload();
     generateCard()
+
   })
 
   const generateCard = () => {
@@ -24,12 +37,12 @@ $(document).ready(function () {
       .then((data) => {
         const cardArea = $("#studyTopics")
         console.log("you got some topics, bruh:", data)
-        data.map(({ category }) => {
+        data.map(({ DISTINCT }) => {
 
-          let newDiv = $("<div class='card'>")
+          let newDiv = $("<div class='card align-center col-10 studyTopic'>")
 
           const categoryCardText = document.createElement('h4')
-          categoryCardText.textContent = `${category}`
+          categoryCardText.textContent = `${DISTINCT}`
 
           newDiv.append(categoryCardText)
           cardArea.append(newDiv)
@@ -38,4 +51,25 @@ $(document).ready(function () {
       }).catch((err) => console.error(err))
   }
   generateCard()
+
+
+
+  $("#studyTopics").on("click", ".studyTopic", function (event) {
+    event.preventDefault()
+    let category = $(this).children().text()
+    $.ajax({
+      type: "GET",
+      url: `/study/${category}`,
+    })
+      .then((data) => {
+        cardArr = data
+        console.log(cardArr)
+
+        const genFlashCard = () => {
+          let term = cardArr[0].term
+          let definition = cardArr[0].definition
+        }
+      })
+
+  })
 });

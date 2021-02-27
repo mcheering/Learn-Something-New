@@ -11,6 +11,14 @@ module.exports = function (app) {
     res.json(req.user);
   });
 
+  app.get("/study/:topic", isAuthenticated, (req, res) => {
+    db.Cards.findAll({
+      where: {
+        category: req.params.topic
+      }
+    }).then((Cards) => res.json(Cards))
+  })
+
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
@@ -43,7 +51,7 @@ module.exports = function (app) {
   })
 
   app.get("/api/cards", isAuthenticated, (req, res) => {
-    db.Cards.findAll({}).then((results) => res.json(results))
+    db.Cards.aggregate("category", "DISTINCT", { plain: false }).then((results) => res.json(results))
   })
 
   // Route for logging user out

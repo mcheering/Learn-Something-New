@@ -19,14 +19,14 @@
       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
       <!-- Custom styles for this template -->
-      <link href="/css/style.css" rel="stylesheet">
+      <link href="/stylesheets/style.css" rel="stylesheet">
 </head>
 
 <body>
       <nav class="navbar navbar-dark bg-dark">
             <div class="container-fluid position relative">
                   <a class="navbar-brand text-center" href="#">Flash Card App</a>
-                  <button class="btn btn-danger float-right position-absolute" href="/logout">
+                  <button id ="logout" class="btn btn-danger float-right position-absolute" href="/logout">
                         Logout
                   </button>
             </div>
@@ -68,42 +68,44 @@
       </div>
       <div class="container">
             <h2>Quiz</h2>
+            <h4>Correct Terms</h4>
+            <ul id="correctAnswers">
+                  <!--This is where terms will go when they click the correct button-->
+            </ul>
+            <h4>Incorrect Tems</h4>
+            <ul id="incorrectAnswers">
+                  <!--This is where terms will go when they click the incorrect button -->
+            </ul>
             <div class="flashCard">
                   <!--this is where flashcards will go after they select a category, one wil be showed at a time, the card will flip on click, and then there will be three buttons, one to hear the word, so there will be an API call cor that, one button to say you got it right, it adds the word to a list on the right, and a button on the left for incorrect to add the word to a list on the left. -->
-                  <div class="container-fluid d-flex justify-content-evenly">
-                        <div>
-                              <h4>Incorrect</h4>
-                              <ul id="incorrectAnswers">
-
-                              </ul>
-                        </div>
-                        <div class="scene scene--card position-relative">
-                              <div class="card" style="width:100%; height:100%;">
-                                    <div class="card__face card__face--front">
-                                          front
+                  <div class="flip-card mx-auto mb-5 my-5">
+                        <div class="flip-card-inner">
+                              <div class="flip-card-front">
+                                    <h4 id="cardTerm">Front</h4>
+                              </div>
+                              <div class="flip-card-back">
+                                    <div class="col">
+                                          <div class="row">
+                                                <p class="mt-5" id="termBack">back</p>
+                                          </div>
                                     </div>
-                                    <div class="card__face card__face--back">
-                                          back
-                                          <button
-                                                class="btn btn-primary position-absolute bottom-0 start-0">Correct</button>
-                                          <button
-                                                class="btn btn-danger position-absolute bottom-0 end-0">Incorrect</button>
+                                    <div class="col">
+                                          <div class="row col-6 mx-auto">
+                                                <button class="btn btn-primary my-1" id="correctAnswer">Correct</button>
+                                                <button class="btn btn-danger my-1"
+                                                      id="incorrectAnswer">Incorrect</button>
+                                          </div>
                                     </div>
                               </div>
-                        </div>
-                        <div>
-                              <h4>Correct</h4>
-                              <ul id="correctAnswers">
-
-                              </ul>
                         </div>
                   </div>
             </div>
       </div>
+      </div>
       <!-- /container -->
-      <footer class=" footer container-fluid mt-auto py-3 bg-dark position-absolute bottom-0">
-            <div class="container mp"></div>
-            <p class="text-center"> copyright © Learn Something New App 2021</p>
+      <footer class=" footer container-fluid py-3 bg-dark">
+            <div class="container">
+                  <p class="text-center my-auto"> copyright © Learn Something New App 2021</p>
             </div>
       </footer>
 
