@@ -15,14 +15,6 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
 
-  app.get("/study/:topic", isAuthenticated, (req, res) => {
-    db.Cards.findAll({
-      where: {
-        category: req.params.topic
-      }
-    }).then((Cards) => res.json(Cards))
-  })
-
   app.get("/login", function (req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
