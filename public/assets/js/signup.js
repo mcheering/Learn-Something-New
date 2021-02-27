@@ -11,8 +11,9 @@ $(document).ready(function() {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim()
     };
-
+    console.log(userData)
     if (!userData.email || !userData.password) {
+      //alert if no bueno
       return;
     }
     // If we have an email and password, run the signUpUser function
