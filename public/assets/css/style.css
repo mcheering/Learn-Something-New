@@ -10,11 +10,10 @@ form.login {
 
 .footer {
   color: white;
-      position: absolute;
+    position: absolute;
     left: 0;
     bottom: 0;
-    overflow: hidden;
-    margin-top: 10rem;
+    margin-top: 50px;
 }
 
 h4 {
@@ -22,9 +21,16 @@ h4 {
 }
 
 .studyTopic {
-  margin: 1rem auto;
   justify-content: center;
 }
+
+.card{
+  margin: 1rem auto;
+}
+
+.flashCard {
+  margin: 10px auto 100px;
+} 
 
 .studyTopic:hover {
     cursor: pointer;
