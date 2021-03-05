@@ -66,6 +66,15 @@ module.exports = function (app) {
 		req.logout()
 		res.json({})
 	})
+	// Route to delete individual terms from the db
+	app.delete('api/deleteTerm', isAuthenticated, function (req, res) {
+		console.log(req)
+		db.Cards.destroy({
+			where: {
+				id: req.body.currentId
+			}
+		})
+	})
 
 	// Route for getting some data about our user to be used client side
 	app.get('/api/user_data', function (req, res) {
