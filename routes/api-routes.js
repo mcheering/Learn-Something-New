@@ -67,11 +67,11 @@ module.exports = function (app) {
 		res.json({})
 	})
 	// Route to delete individual terms from the db
-	app.delete('api/deleteTerm', isAuthenticated, function (req, res) {
+	app.delete('/api/deleteTerm', isAuthenticated, function (req, res) {
 		console.log(req)
 		db.Cards.destroy({
 			where: {
-				id: req.body.currentId
+				card_id: req.body.currentId
 			}
 		})
 	})

@@ -114,17 +114,17 @@ $(document).ready(function () {
 
   $('.flashCard').on('click', '#deleteButon', function (event) {
     event.preventDefault()
-    let data = {
-      currentId: $(this).data('card-id')
-    }
+    let currentId = $(this).data('card-id')
 
+    let data = {
+      currentId: currentId
+    }
+    $(`.card-${currentId}`).hide()
     $.ajax({
       type: 'DELETE',
-      url: 'api/deleteTerm',
+      url: '/api/deleteTerm',
       data: data
-    }).then(() => {
-      $(`.card-${data.currentId}`).hide()
     })
-
+    $(`.card-${currentId}`).hide()
   })
 })
