@@ -45,8 +45,9 @@ This project used the following technologies
 - Sequelize
 - MySQL 
 - Handlebars 
+- eslint
 
-# Contributions 
+# Contributions
 
 This project was a collaboration between the following individuals
 
