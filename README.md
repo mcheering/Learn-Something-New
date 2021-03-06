@@ -70,4 +70,4 @@ This project was a great learning experience in full stack web development.  Eac
 We wanted to try and complete the first two in the time alloted, however, we were unable to find time to execute and commit these options to the application.  
 
 #  Special Thanks
-We would like to thank Brandon and Paal for their help and insight into building this application.  Their guidance was helpful and informative.  Their guidance helped us deliver an application we are proud to have built.  
+We would like to thank Brandon Max and Paal Williams for their help and insight into building this application.  Their guidance was helpful and informative.  Their guidance helped us deliver an application we are proud to have built.  
