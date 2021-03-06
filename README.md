@@ -53,7 +53,7 @@ This project was a collaboration between the following individuals
 
 - Matthew Heering
 - Chris Stanfill
-- Sarah Peitz 
+- Sarah Paitz 
 - Louis Werner
 - Chris Bone 
 
