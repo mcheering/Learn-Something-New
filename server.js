@@ -2,9 +2,6 @@
 // Requiring necessary npm packages
 const express = require('express')
 const session = require('express-session')
-//var MemcachedStore = require('connect-memjs')(session)
-
-//var store = new MemcachedStore({ servers: [process.env.MEMCACHEDCLOUD_SERVERS], username: process.env.MEMCACHEDCLOUD_USERNAME, password: process.env.MEMCACHEDCLOUD_PASSWORD })
 
 // Requiring passport as we've configured it
 const passport = require('./config/passport')

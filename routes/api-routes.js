@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 // Requiring our models and passport as we've configured it
 const db = require('../models')
