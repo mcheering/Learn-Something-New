@@ -10,6 +10,24 @@ $(document).ready(function () {
 		})
 	})
 
+	$('#definition').on('keydown', function (event) {
+		event.preventDefault()
+		let dataObj = {
+			topic: $('#topic').val().trim(),
+			term: $('#term').val().trim(),
+			definition: $('#definition').val().trim()
+		}
+		if (event.keyCode == 13) {
+			$.ajax({
+				type: 'POST',
+				url: 'api/createCard',
+				data: dataObj
+			})
+			location.reload()
+			generateCard()
+		}
+	})
+
 	//When user clicks submit button
 	// create an obj that captures user input
 	//make a post request to api/createCard
