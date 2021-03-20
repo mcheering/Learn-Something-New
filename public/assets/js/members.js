@@ -11,7 +11,6 @@ $(document).ready(function () {
 	})
 
 	$('#definition').on('keydown', function (event) {
-		event.preventDefault()
 		let dataObj = {
 			topic: $('#topic').val().trim(),
 			term: $('#term').val().trim(),
